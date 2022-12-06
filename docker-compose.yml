@@ -12,5 +12,10 @@ services:
       - "7688:7687"
     volumes:
       - ./neo4j_server/data:/data
+      - ./neo4j_server/logs:/logs
+      - ./neo4j_server/import:/var/lib/neo4j/import
+      - ./neo4j_server/plugins:/plugins
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     # depends_on:
     #   - mysql

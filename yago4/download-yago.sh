@@ -2,7 +2,7 @@
 set -e
 
 export DATA_DIR="${PWD}/data"
-export NEO4J_HOME=${PWD}/neo4j-server
+export NEO4J_HOME=${PWD}/../neo4j_server
 export NEO4J_IMPORT="${NEO4J_HOME}/import"
 mkdir -p -v "${DATA_DIR}"
 mkdir -p -v "${NEO4J_IMPORT}"

@@ -1,1 +1,1 @@
-DOCKER_UID=1001 DOCKER_GID=1001 docker-compose up
+DOCKER_UID=1001 DOCKER_GID=1001 docker-compose up --build
