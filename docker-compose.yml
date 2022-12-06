@@ -1,0 +1,16 @@
+version: "3.3" # optional since v1.27.0
+services:
+  neo4j:
+    restart: always
+    user: "${DOCKER_UID}:${DOCKER_GID}"
+    build: ./neo4j_server
+    container_name: neo4j_server
+    environment:
+      - TZ=Asia/Shanghai
+    ports:
+      - "7475:7474"
+      - "7688:7687"
+    volumes:
+      - ./neo4j_server/data:/data
+    # depends_on:
+    #   - mysql
