@@ -9,5 +9,5 @@ for file in ${NEO4J_IMPORT}/*.nt*; do
     echo $file
     filename="$(basename "${file}")"
     echo "Importing $filename from ${NEO4J_IMPORT}"
-    ${NEO4J_HOME}/bin/cypher-shell -u neo4j -p 'QAZqaz1234' "CALL  n10s.rdf.import.fetch(\"file://${NEO4J_HOME}/import/$filename\",\"N-Triples\");"
+    ${NEO4J_HOME}/bin/cypher-shell -u neo4j -p 'password' "CALL  n10s.rdf.import.fetch(\"file://${NEO4J_HOME}/import/$filename\",\"N-Triples\");"
 done

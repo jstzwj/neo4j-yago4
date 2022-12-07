@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-export DATA_DIR="${PWD}/data"
+export DATA_DIR="${PWD}/yago4_data"
 export NEO4J_HOME=${PWD}/../neo4j_server
 export NEO4J_IMPORT="${NEO4J_HOME}/import"
 mkdir -p -v "${DATA_DIR}"
@@ -15,11 +15,12 @@ fi
 if [ -d $DATA_DIR ]
 then
     echo "Downloading files..."
-    rm -v ${DATA_DIR}/*.* || true
+    if [ -d ${DATA_DIR}/*.* ]; then
+      rm -v ${DATA_DIR}/*.* || true
+    fi
     while read -r line; do
         [[ "$line" =~ ^#.*$ ]] && continue
-        # wget -P ${DATA_DIR}/ "http://yago.r2.enst.fr/data/yago4/full/2020-02-24/"$line
-        cp /data/wangjun/github/kbqat/knowledgegraph/yago4/$line ${DATA_DIR}/
+        wget -P ${DATA_DIR}/ "http://yago.r2.enst.fr/data/yago4/full/2020-02-24/"$line
         if [[ $line == *"yago-wd-labels"* ]]
         then
           echo "Keeping only english labels"
@@ -37,7 +38,7 @@ then
           filename=$(basename -- "${DATA_DIR}/${line##*/}")
           filename="${filename%.*}"
         fi
-        split -l 5000000 --numeric-suffixes ${DATA_DIR}/${filename} ${DATA_DIR}/part-${filename}
+        split -l 500000 --numeric-suffixes ${DATA_DIR}/${filename} ${DATA_DIR}/part-${filename}
         rm ${DATA_DIR}/${filename}
     done < $1
     mv ${DATA_DIR}/part-*.nt* ${NEO4J_IMPORT}/

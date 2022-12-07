@@ -17,5 +17,3 @@ services:
       - ./neo4j_server/plugins:/plugins
     extra_hosts:
       - "host.docker.internal:host-gateway"
-    # depends_on:
-    #   - mysql

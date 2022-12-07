@@ -1,1 +1,0 @@
-sudo docker cp yago4/import-yago.sh neo4j_server:/var/lib/neo4j
